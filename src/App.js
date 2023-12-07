@@ -3,6 +3,7 @@ import './App.css';
 
 // Components //
 import Navbar from './components/navbar';
+import MovieCard from './components/movieCard';
 
 
 // Hooks //
@@ -20,11 +21,11 @@ function App() {
          </header>
 
          <main>
-
+            <MovieCard/>
          </main>
 
          <footer>
-            
+
          </footer>
       
       

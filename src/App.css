@@ -1,0 +1,27 @@
+/* HEADER */
+
+header {
+    font-family: Josefin sans;
+}
+
+.form-control {
+    width: 500px !important;
+    max-width: 500px !important;
+    background-color: lightslategrey !important;
+    opacity: 0.9;
+}
+
+.form-control:focus {
+    border-color: blueviolet !important;
+    box-shadow: 0 0 0 0.25rem rgba(133, 13, 253, 0.25) !important;
+    color: white !important;
+}
+
+
+
+/* MAIN */ 
+
+main {
+    background-color: black;
+    color: white;
+}
