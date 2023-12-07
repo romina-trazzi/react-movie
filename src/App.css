@@ -16,6 +16,8 @@ header {
 
 .nav_text {
     padding-top: 5px;
+    padding-left:10px;
+    color: white;
 }
 
 .nav_icon {

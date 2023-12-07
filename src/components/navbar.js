@@ -16,7 +16,7 @@ const Navbar = () => {
                         <div class="my_nav d-grid">
                           
                             <span class="nav_icon material-symbols-outlined" style={{color: "blueviolet", fontSize:"35px"}}>  movie_info </span>
-                            <span class="nav_text" style={{color:"white", paddingLeft:"10px"}}> React Bootstrap Api Movie App</span>
+                            <span class="nav_text"> React Bootstrap Api Movie App</span>
                           
                         
                         </div>
