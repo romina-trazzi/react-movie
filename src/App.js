@@ -21,7 +21,12 @@ function App() {
          </header>
 
          <main>
-            <MovieCard/>
+            <div class="movie_list_container d-flex flex-wrap justify-content-around">
+               <MovieCard/>
+               <MovieCard/>
+               <MovieCard/>
+               <MovieCard/>
+            </div>
          </main>
 
          <footer>
