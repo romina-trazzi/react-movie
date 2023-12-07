@@ -14,9 +14,24 @@ import Navbar from './components/navbar';
 function App() {
 
     return (
-       <div>
-          <Navbar/>
-       </div>
+      <>
+         <header>
+            <Navbar/>
+         </header>
+
+         <main>
+
+         </main>
+
+         <footer>
+            
+         </footer>
+      
+      
+      </>
+    
+
+    
     )
 }
 

@@ -15,7 +15,7 @@ const Navbar = () => {
                     <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTogglerDemo01">
                         
                         <div class="d-flex align-items-center">
-                            <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24"/>
+                        <span class="material-symbols-outlined" style={{color: "blueviolet", fontSize:"35px"}}> movie_info </span>
                             <span style={{color:"white", paddingLeft:"10px", paddingTop:"3px", fontFamily:"Josefin sans, sans-serif", fontWeight:"600"}}> React Bootstrap Movie App</span>
                         </div>
                        
