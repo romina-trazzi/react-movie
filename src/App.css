@@ -1,14 +1,32 @@
 /* HEADER */
 
 header {
-    font-family: Josefin sans;
+    font-family: 'Josefin sans', sans-serif;
+}
+
+.navbar {
+    font-size: 1.5rem !important;
+}
+
+.my_nav {
+    display: grid;
+    grid-template-columns: 35px auto;
+    grid-template-areas: "nav_icon nav_text";
+}
+
+.nav_text {
+    padding-top: 5px;
+}
+
+.nav_icon {
+    align-self: center;
 }
 
 .form-control {
     width: 500px !important;
     max-width: 500px !important;
     background-color: lightslategrey !important;
-    opacity: 0.9;
+    opacity: 0.9 !important;
 }
 
 .form-control:focus {

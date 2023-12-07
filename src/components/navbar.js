@@ -13,13 +13,16 @@ const Navbar = () => {
                     
                     <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarTogglerDemo01">
                         
-                        <div class="d-flex align-items-center">
-                        <span class="material-symbols-outlined" style={{color: "blueviolet", fontSize:"35px"}}> movie_info </span>
-                            <span style={{color:"white", paddingLeft:"10px", paddingTop:"3px", fontWeight:"600"}}> React Bootstrap Api Movie App</span>
+                        <div class="my_nav d-grid">
+                          
+                            <span class="nav_icon material-symbols-outlined" style={{color: "blueviolet", fontSize:"35px"}}>  movie_info </span>
+                            <span class="nav_text" style={{color:"white", paddingLeft:"10px"}}> React Bootstrap Api Movie App</span>
+                          
+                        
                         </div>
                        
                    
-                        <form role="search">
+                        <form role="search" style={{paddingTop:"3px"}}>
                             <div class="d-flex align-items-center input-group">
                                 <div class="input-group-text" id="basic-addon1"> 
                                     <span class="material-symbols-outlined"> search </span>
@@ -41,3 +44,4 @@ const Navbar = () => {
 export default Navbar
 
 
+/* <div class="d-flex justify-content-center align-items-center">   </div> */
