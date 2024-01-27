@@ -1,6 +1,6 @@
-function ButtonSearch({onMovieRequest, children}) {
+function ButtonSearch({onClick, children}) {
   return (
-    <button onClick={() => getMovieRequest(searchValue)}> {children} </button>
+    <button className="btn" style={{outlineColor: 'blueviolet'}} onClick={onClick}> {children} </button>
   )
 }
 

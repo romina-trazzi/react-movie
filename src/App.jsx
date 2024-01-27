@@ -17,21 +17,35 @@ function App() {
 
   //  Api request
   const getMovieRequest = async (searchValue) => {
-    let allMovies = [];
-    let filteredMovies = [];
+    try {
+      let allMovies = [];
+      let filteredMovies = [];
 
-    // Fetch 5 pages of movies 
-    for (let page = 1; page <= 2; page++) {
-      const url = `http://www.omdbapi.com/?s=${searchValue}&type=movie&page=${page}&apikey=eb1262b`
-      const response = await fetch(url);
-      const data = await response.json();
+      // Fetch 2 pages of movies 
+      for (let page = 1; page <= 2; page++) {
+        const url = `http://www.omdbapi.com/?s=${searchValue}&type=movie&page=${page}&apikey=5d78aa7b`
+        const response = await fetch(url);
+        const data = await response.json();
 
-      if (data.Search) {
-        allMovies = [...allMovies, ...data.Search];
-        filteredMovies = allMovies.filter(movie => movie.Poster !== "N/A" && movie.Title.toLowerCase().includes(searchValue.toLowerCase()));
-      };
+        if (data.Search) {
+          allMovies = [...allMovies, ...data.Search];
+          filteredMovies = allMovies.filter(movie => movie.Poster !== "N/A" && movie.Title.toLowerCase().includes(searchValue.toLowerCase()));
+        };
+
+        if (!response.ok) {
+          throw new Error(`Errore nella risposta del server: ${response.status}`);
+        }
+      }
+    
+      setMovies(filteredMovies);
+
+    } catch (error) {
+    
+    // Stampare dettagli sugli errori nella console
+    setError(error.message);
+    console.error("Errore durante la richiesta dei film:", error);
     }
-    setMovies(filteredMovies);
+
   };
 
   // Handler Functions
@@ -46,7 +60,7 @@ function App() {
   return (
     <>
       <header>
-        <Navbar onSearch={handleSearchValue} onMovieRequest={getMovieRequest}/>
+        <Navbar searchValue={searchValue} onSearch={handleSearchValue} onMovieRequest={getMovieRequest}/>
       </header>
 
       <main>

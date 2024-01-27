@@ -1,6 +1,13 @@
 import ButtonSearch from "../buttonSearch/buttonSearch";
 
-const Navbar = ({ onSearch, onMovieRequest }) => {
+const Navbar = ({ searchValue, onSearch, onMovieRequest }) => {
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); 
+    onMovieRequest(searchValue);
+  };
+
+
   return (
     <div className='container-fluid p-0'>
       <nav
@@ -35,7 +42,7 @@ const Navbar = ({ onSearch, onMovieRequest }) => {
               <span className='nav_text'> React Bootstrap Api Movie App</span>
             </div>
 
-            <form role='search' style={{ paddingTop: '3px' }}>
+            <form role='search' style={{ paddingTop: '3px' }} onSubmit={handleSubmit} >
               <div className='d-flex align-items-center input-group'>
                 <div className='input-group-text' id='basic-addon1'>
                   <span className='material-symbols-outlined'> search </span>
@@ -50,7 +57,7 @@ const Navbar = ({ onSearch, onMovieRequest }) => {
                   onChange={onSearch}
                 />
 
-                <ButtonSearch>Search</ButtonSearch>
+                <ButtonSearch onClick={() => onMovieRequest(searchValue)}>Search</ButtonSearch>
 
               </div>
             </form>
