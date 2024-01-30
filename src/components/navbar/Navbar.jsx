@@ -1,11 +1,21 @@
 import ButtonSearch from "../buttonSearch/buttonSearch";
 
-const Navbar = ({ searchValue, onSearch, onMovieRequest }) => {
+// Hooks //
+import { useState } from 'react';
 
+const Navbar = ({ onMovieRequest }) => {
+  
+  const [searchValue, setSearchValue] = useState('');
+
+  // Handler Functions
   const handleSubmit = (event) => {
     event.preventDefault(); 
     onMovieRequest(searchValue);
   };
+
+  function handleSearchValue(event) {
+    setSearchValue(event.target.value);
+  }
 
 
   return (
@@ -54,7 +64,7 @@ const Navbar = ({ searchValue, onSearch, onMovieRequest }) => {
                   placeholder='Search a movie title'
                   aria-label='Search'
                   aria-describedby='basic-addon1'
-                  onChange={onSearch}
+                  onChange={handleSearchValue}
                 />
 
                 <ButtonSearch onClick={() => onMovieRequest(searchValue)}>Search</ButtonSearch>

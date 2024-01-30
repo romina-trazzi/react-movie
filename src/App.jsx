@@ -4,6 +4,7 @@ import './App.css';
 // Components //
 import Navbar from './components/navbar/Navbar';
 import MovieList from './components/movieList/MovieList';
+import ButtonFavourite from './components/buttonFavourite/buttonFavourite';
 import MovieFavourite from './components/movieFavourite/MoviesFavourite';
 
 // Hooks //
@@ -11,7 +12,6 @@ import { useState } from 'react';
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
   const [favouriteMovie, setFavouriteMovie] = useState([]);
   const [isClicked, setIsClicked] = useState(false);
 
@@ -40,37 +40,36 @@ function App() {
       setMovies(filteredMovies);
 
     } catch (error) {
-    
-    // Stampare dettagli sugli errori nella console
-    setError(error.message);
-    console.error("Errore durante la richiesta dei film:", error);
+
+      // Stampare dettagli sugli errori nella console
+      setError(error.message);
+      console.error("Errore durante la richiesta dei film:", error);
     }
 
   };
 
   // Handler Functions
-  function handleSearchValue(event) {
-    setSearchValue(event.target.value);
-  }
-
   const handleFavourite = (movie) => {
-    setFavouriteMovie((prev) => [...prev, movie]);
+    if (!favouriteMovie.some((favMovie) => favMovie.Title === movie.Title)) {
+      setFavouriteMovie((prev) => [...prev, movie]);
+    }
   }
 
   return (
     <>
       <header>
-        <Navbar searchValue={searchValue} onSearch={handleSearchValue} onMovieRequest={getMovieRequest}/>
+        <Navbar onMovieRequest={getMovieRequest}/>
       </header>
 
       <main>
         <div className='movie_list_container'>
-          {movies.length > 0 ? <>
-            <div className='d-flex flex-direction-column justify-content-center align-content-center'> 
+          {movies.length > 0 ? 
+          <>
+            <div className='d-flex flex-column justify-content-center align-content-center'> 
               <MovieList movies={movies} onFavourite={handleFavourite}/> 
+              <ButtonFavourite setIsClicked={setIsClicked}>Show\Hide favourites</ButtonFavourite>
+              {isClicked && <MovieFavourite favouriteMovie={favouriteMovie}/>}
             </div>
-            <button className="m-5" onClick={()=> setIsClicked((prev)=> !prev)}>Show\Hide favourites</button> 
-            {isClicked && <MovieFavourite favouriteMovie={favouriteMovie}/>}
           </>
           : <p style={{margin: "0"}}> No movie found </p>}
         </div>

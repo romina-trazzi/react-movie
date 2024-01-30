@@ -1,12 +1,14 @@
+import './MovieFavourite.css';
+
 const MovieFavourite = ({favouriteMovie}) => {
     return (
-        <div className="favourite">
-            {favouriteMovie.map((movieFav) => {
+        <div className="favourite d-flex flex-wrap">
+            {favouriteMovie.map((movieFav, index) => {
                 return (
-                    <div>
-                        <h3 key={movieFav.Title}>{movieFav.Title} </h3>
-                        <img src={movieFav.Poster}></img>
-                        <span>{movieFav.Year}</span>
+                    <div key={index} className='d-flex flex-column align-items-center justify-content-around p-5'>
+                        <span className='pb-3'>{movieFav.Title}</span>
+                        <img src={movieFav.Poster} alt='movie_poster' style={{ width: '200px', cursor:'pointer' }}/>
+                        <span className='pt-3'> {movieFav.Year}</span>
                     </div>
                 )})
 
@@ -19,5 +21,6 @@ const MovieFavourite = ({favouriteMovie}) => {
 export default MovieFavourite
 
 
-
+       
+      
 
