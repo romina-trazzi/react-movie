@@ -1,4 +1,4 @@
-function buttonFavourite({setIsClicked, children}) {
+function ButtonFavourite({setIsClicked, children}) {
   return (
     <button className="btn btn-secondary m-5" type="button" style={{outlineColor: 'blueviolet', width:"fit-content"}}  onClick={()=> setIsClicked((prev)=> !prev)}>{children}</button>
       
@@ -6,7 +6,7 @@ function buttonFavourite({setIsClicked, children}) {
   )
 }
 
-export default buttonFavourite
+export default ButtonFavourite
 
 
 

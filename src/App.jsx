@@ -4,7 +4,7 @@ import './App.css';
 // Components //
 import Navbar from './components/navbar/Navbar';
 import MovieList from './components/movieList/MovieList';
-import ButtonFavourite from './components/buttonFavourite/buttonFavourite';
+import ButtonFavourite from './components/buttonFavourite/ButtonFavourite';
 import MovieFavourite from './components/movieFavourite/MoviesFavourite';
 
 // Hooks //
@@ -29,15 +29,22 @@ function App() {
 
         if (data.Search) {
           allMovies = [...allMovies, ...data.Search];
-          filteredMovies = allMovies.filter(movie => movie.Poster !== "N/A" && movie.Title.toLowerCase().includes(searchValue.toLowerCase()));
+          
+          // Rules to Filter movies 
+          filteredMovies = allMovies.filter(movie => 
+          movie.Title.toLowerCase().includes(searchValue.toLowerCase()) && 
+          movie.Title.length < 30 && 
+          movie.Poster !== "N/A")
         };
 
+        // Handle Error
         if (!response.ok) {
           throw new Error(`Errore nella risposta del server: ${response.status}`);
         }
       }
     
       setMovies(filteredMovies);
+
 
     } catch (error) {
 
