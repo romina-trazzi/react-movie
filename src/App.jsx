@@ -56,9 +56,9 @@ function App() {
   };
 
   // Handler Functions
-  const handleFavourite = (movie) => {
-    if (!favouriteMovie.some((favMovie) => favMovie.Title === movie.Title)) {
-      setFavouriteMovie((prev) => [...prev, movie]);
+  const handleFavourite = (choosenMovie) => {
+    if (!favouriteMovie.some((favMovie) => favMovie.Title === choosenMovie.Title)) {
+      setFavouriteMovie((prev) => [...prev, choosenMovie]);
     }
   }
 
