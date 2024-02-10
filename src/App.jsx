@@ -14,7 +14,19 @@ import { useState } from 'react';
 function App() {
   const [movies, setMovies] = useState([]);
   const [favouriteMovie, setFavouriteMovie] = useState([]);
+  const [movieDetails, setMovieDetails] = useState({
+    title: "",
+    year: "",
+    runtime: "",
+    rated: "",
+    genre: "",
+    actors: "",
+    plot: "",
+    poster: "",
+  });
   const [isClicked, setIsClicked] = useState(false);
+  const [showMovieDetails, setShowMovieDetails] = useState(false);
+  
 
   //  Api request
   const getMovieRequest = async (searchValue) => {
@@ -70,7 +82,18 @@ function App() {
       const data = await response.json();
 
       if (data) {
-        setIsClicked(true);
+        setShowMovieDetails(true);
+        setMovieDetails({
+          title: data.Title,
+          year: data.Year,
+          runtime: data.Runtime,
+          rated: data.Rated,
+          genre: data.Genre,
+          actors: data.Actors,
+          plot: data.Plot,
+          poster: data.Poster,
+        });
+        
       }
     
       // Handle Error
@@ -78,11 +101,12 @@ function App() {
         throw new Error(`Errore nella risposta del server: ${response.status}`);
       }
 
+      return data
+
     } catch (error) {
       // Stampare dettagli sugli errori nella console
       console.error("Errore durante la richiesta dei film:", error);
     }
-
 
   };
 
@@ -93,7 +117,7 @@ function App() {
       </header>
 
       <main>
-        {isClicked && <MovieFullDetails/> }
+        {showMovieDetails && <MovieFullDetails movieDetails={movieDetails}/>}
         <div className='movie_list_container'>
           {movies.length > 0 ?
           <>

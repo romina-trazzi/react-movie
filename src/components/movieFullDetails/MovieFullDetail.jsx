@@ -1,11 +1,16 @@
+function MovieFullDetail({movieDetails}) {
 
+  const {title, year,runtime, rated, genre, actors, plot, poster } = movieDetails
 
-function MovieFullDetail({movie}) {
   return (
     <div>
-        <span>{movie.Title}</span>
-        <span className='pt-3'> {movie.Year}</span>
-       <img src={movie.Poster} alt='movie_poster' style={{width: '250px', height:"300px"}}/>
+      <span>{title}</span>
+      <span>{year}</span>
+      <span>{runtime}</span>
+      <span>{rated}</span>
+      <span>{genre}</span>
+      <span>{actors}</span>
+      <span>{plot}</span>
     </div>
   )
 }
