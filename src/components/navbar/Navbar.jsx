@@ -49,7 +49,7 @@ const Navbar = ({ onMovieRequest }) => {
               >
                 movie_info
               </span>
-              <span className='nav_text'> React Bootstrap Api Movie App</span>
+              <span className='nav_text h3 m-0'> React Bootstrap Api Movie App</span>
             </div>
 
             <form role='search' style={{ paddingTop: '3px' }} onSubmit={handleSubmit} >

@@ -6,7 +6,7 @@ function MovieFullDetail({movieDetails}) {
     <div>
       <div className='p-5'>
         <div>
-          <h2>Movie Details</h2>
+          <h4>Movie Details</h4>
           <div className="row d-flex justify-content-center border border-light-subtle pt-5 pb-5">
 
             <div className="col-auto">
