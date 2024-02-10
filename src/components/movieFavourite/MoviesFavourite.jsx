@@ -1,7 +1,7 @@
-const MovieFavourite = ({favouriteMovie}) => {
+const MovieFavourite = ({favouriteMovies}) => {
     return (
         <div className="favourite d-flex flex-wrap">
-            {favouriteMovie.map((movieFav, index) => {
+            {favouriteMovies.map((movieFav, index) => {
                 return (
                     <div key={index} className='d-flex flex-column align-items-center justify-content-around p-5'>
                         <span className='pb-3'>{movieFav.Title}</span>

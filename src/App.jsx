@@ -4,16 +4,18 @@ import './App.css';
 // Components //
 import Navbar from './components/navbar/Navbar';
 import MovieList from './components/movieList/MovieList';
-import ButtonFavourite from './components/buttonFavourite/ButtonFavourite';
 import MovieFavourite from './components/movieFavourite/MoviesFavourite';
+import ButtonFavourite from './components/buttonFavourite/ButtonFavourite';
 import MovieFullDetails from './components/movieFullDetails/MovieFullDetail';
 
 // Hooks //
 import { useState } from 'react';
 
 function App() {
+
+  // Movies lists state manager //
   const [movies, setMovies] = useState([]);
-  const [favouriteMovie, setFavouriteMovie] = useState([]);
+  const [favouriteMovies, setFavouriteMovies] = useState([]);
   const [movieDetails, setMovieDetails] = useState({
     title: "",
     year: "",
@@ -24,6 +26,8 @@ function App() {
     plot: "",
     poster: "",
   });
+
+  // Boolean values state manager //
   const [isClicked, setIsClicked] = useState(false);
   const [showMovieDetails, setShowMovieDetails] = useState(false);
   
@@ -43,7 +47,7 @@ function App() {
         if (data.Search) {
           allMovies = [...allMovies, ...data.Search];
 
-          // Rules to Filter movies
+          // Rules to filter movies
           filteredMovies = allMovies.filter(movie =>
           movie.Title.toLowerCase().includes(searchValue.toLowerCase()) &&
           movie.Title.length < 30 &&
@@ -56,12 +60,13 @@ function App() {
         }
       }
 
+      // Set filtered movies
       setMovies(filteredMovies);
 
 
     } catch (error) {
 
-      // Stampare dettagli sugli errori nella console
+      // Print custom error message in console
       setError(error.message);
       console.error("Errore durante la richiesta dei film:", error);
     }
@@ -70,8 +75,12 @@ function App() {
 
   // Handler Functions
   const handleFavourites = (choosenMovie) => {
-    if (!favouriteMovie.some((favMovie) => favMovie.Title === choosenMovie.Title)) {
-      setFavouriteMovie((prev) => [...prev, choosenMovie]);
+    
+    /* Returns true if doesn't exist at least one movie which has the same title as the choosen movie
+    If so, set a new favourite movie into favouriteMovies array state keeping the previous ones */
+    
+    if (!favouriteMovies.some((favMovie) => favMovie.Title === choosenMovie.Title)) {
+      setFavouriteMovies((prev) => [...prev, choosenMovie]);
     }
   }
 
@@ -81,8 +90,8 @@ function App() {
       const response = await fetch(url);
       const data = await response.json();
 
+      /* If data exists, populate movieDetails object state */
       if (data) {
-        setShowMovieDetails(true);
         setMovieDetails({
           title: data.Title,
           year: data.Year,
@@ -93,7 +102,9 @@ function App() {
           plot: data.Plot,
           poster: data.Poster,
         });
-        
+
+        // Then set show movie details to the opposite value
+        setShowMovieDetails(true);
       }
     
       // Handle Error
@@ -117,14 +128,22 @@ function App() {
       </header>
 
       <main>
+
+        {/* If showMovieDetails is true, show MovieFullDetails component */}
         {showMovieDetails && <MovieFullDetails movieDetails={movieDetails}/>}
+        
         <div className='movie_list_container'>
           {movies.length > 0 ?
           <>
             <div className='d-flex flex-column justify-content-center align-content-center'>
+              
+              {/* MovieList + ButtonFavourite */}
               <MovieList movies={movies} onFavourite={handleFavourites} onMovieDetails={handleSingleMovieDetails}/>
               <ButtonFavourite setIsClicked={setIsClicked}>Show\Hide favourites</ButtonFavourite>
-              {isClicked && <MovieFavourite favouriteMovie={favouriteMovie}/>}
+              
+              {/* If isClicked is true, show MovieFavourite component */}
+              {isClicked && <MovieFavourite favouriteMovies={favouriteMovies}/>}
+            
             </div>
           </>
           : <p style={{margin: "0"}}> No movie found </p>}
