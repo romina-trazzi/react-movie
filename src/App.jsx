@@ -25,15 +25,19 @@ function App() {
     actors: "",
     plot: "",
     poster: "",
+    imdbID:"",
   });
 
   // Boolean values state manager //
   const [isClicked, setIsClicked] = useState(false);
   const [showMovieDetails, setShowMovieDetails] = useState(false);
   
-
-  //  Api request
+  //  Api request for list of movies
   const getMovieRequest = async (searchValue) => {
+    
+    // Close always movieDetails component 
+    setShowMovieDetails(false);
+      
     try {
       let allMovies = [];
       let filteredMovies = [];
@@ -63,7 +67,6 @@ function App() {
       // Set filtered movies
       setMovies(filteredMovies);
 
-
     } catch (error) {
 
       // Print custom error message in console
@@ -73,54 +76,64 @@ function App() {
 
   };
 
-  // Handler Functions
-  const handleFavourites = (choosenMovie) => {
-    
-    /* Returns true if doesn't exist at least one movie which has the same title as the choosen movie
-    If so, set a new favourite movie into favouriteMovies array state keeping the previous ones */
-    
-    if (!favouriteMovies.some((favMovie) => favMovie.Title === choosenMovie.Title)) {
-      setFavouriteMovies((prev) => [...prev, choosenMovie]);
-    }
-  }
-
+  // Api request (single movie details)
   const handleSingleMovieDetails = async (imdbCode) => {
     try {
+
+      /* Call API single film details */
       const url = `http://www.omdbapi.com/?i=${imdbCode}&apikey=5d78aa7b`
       const response = await fetch(url);
       const data = await response.json();
 
-      /* If data exists, populate movieDetails object state */
-      if (data) {
-        setMovieDetails({
-          title: data.Title,
-          year: data.Year,
-          runtime: data.Runtime,
-          rated: data.Rated,
-          genre: data.Genre,
-          actors: data.Actors,
-          plot: data.Plot,
-          poster: data.Poster,
-        });
+      // If showMovieDetails is true and when cover is clicking the imdbCode is the same, close window details
+      if (movieDetails.imdbID === imdbCode && showMovieDetails) {
+        setShowMovieDetails(false);
 
-        // Then set show movie details to the opposite value
-        setShowMovieDetails(true);
+      // Else show a new movie details window
+      } else {
+
+        /* If data exists, populate movieDetails object state */
+        if (data) {
+          setMovieDetails({
+            title: data.Title,
+            year: data.Year,
+            runtime: data.Runtime,
+            rated: data.Rated,
+            genre: data.Genre,
+            actors: data.Actors,
+            plot: data.Plot,
+            poster: data.Poster,
+            imdbID: data.imdbID
+          });
+          
+          // Then set show movie details to the opposite value
+          setShowMovieDetails(true);
+        }
       }
-    
+  
       // Handle Error
       if (!response.ok) {
         throw new Error(`Errore nella risposta del server: ${response.status}`);
       }
-
-      return data
-
+      
     } catch (error) {
-      // Stampare dettagli sugli errori nella console
-      console.error("Errore durante la richiesta dei film:", error);
+      console.error("Errore durante la richiesta dei film:", error); 
     }
-
   };
 
+  // Handle add and remove movies from favourite list
+  const handleFavourites = (choosenMovieID, typeButton) => {
+
+    // Get choosen movie by id
+    const choosenMovie = movies.find((favMovie) => favMovie.imdbID === choosenMovieID);
+    
+    if (typeButton === "add") {
+      setFavouriteMovies((prev) => [...prev, choosenMovie]);
+    } else if (typeButton === "remove") {
+      setFavouriteMovies((prev) => [...prev.filter((movie) => movie.imdbID !== choosenMovie.imdbID)]);
+    }
+  };
+  
   return (
     <>
       <header>
@@ -130,7 +143,7 @@ function App() {
       <main>
 
         {/* If showMovieDetails is true, show MovieFullDetails component */}
-        {showMovieDetails && <MovieFullDetails movieDetails={movieDetails}/>}
+        {showMovieDetails ? <MovieFullDetails movieDetails={movieDetails}/> : ""}
         
         <div className='movie_list_container'>
           {movies.length > 0 ?
@@ -138,15 +151,19 @@ function App() {
             <div className='d-flex flex-column justify-content-center align-content-center'>
               
               {/* MovieList + ButtonFavourite */}
-              <MovieList movies={movies} onFavourite={handleFavourites} onMovieDetails={handleSingleMovieDetails}/>
+              <MovieList movies={movies} favouriteMovies={favouriteMovies} onFavourite={handleFavourites} setFavouriteMovies={setFavouriteMovies} onMovieDetails={handleSingleMovieDetails}/>
               <ButtonFavourite setIsClicked={setIsClicked}>Show\Hide favourites</ButtonFavourite>
+
+              <hr/>
               
               {/* If isClicked is true, show MovieFavourite component */}
               {isClicked && <MovieFavourite favouriteMovies={favouriteMovies}/>}
             
             </div>
+            
           </>
-          : <p style={{margin: "0"}}> No movie found </p>}
+          : <p style={{textAlign:"center"}}> No movie found </p>}
+
         </div>
       </main>
 
@@ -158,3 +175,5 @@ function App() {
 }
 
 export default App;
+
+

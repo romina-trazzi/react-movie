@@ -1,22 +1,18 @@
 import ButtonSearch from "../buttonSearch/buttonSearch";
 
 // Hooks //
-import { useState } from 'react';
+import { useRef } from 'react';
 
 const Navbar = ({ onMovieRequest }) => {
-  
-  const [searchValue, setSearchValue] = useState('');
 
+  const inputValue = useRef();
+  
   // Handler Functions
   const handleSubmit = (event) => {
     event.preventDefault(); 
-    onMovieRequest(searchValue);
+    onMovieRequest(inputValue.current.value);
+    inputValue.current.value = '';
   };
-
-  function handleSearchValue(event) {
-    setSearchValue(event.target.value);
-  }
-
 
   return (
     <div className='container-fluid p-0'>
@@ -52,7 +48,7 @@ const Navbar = ({ onMovieRequest }) => {
               <span className='nav_text h3 m-0'> React Bootstrap Api Movie App</span>
             </div>
 
-            <form role='search' style={{ paddingTop: '3px' }} onSubmit={handleSubmit} >
+            <form role='search' style={{ paddingTop: '3px' }} onSubmit={handleSubmit}>
               <div className='d-flex align-items-center input-group'>
                 <div className='input-group-text' id='basic-addon1'>
                   <span className='material-symbols-outlined'> search </span>
@@ -64,10 +60,11 @@ const Navbar = ({ onMovieRequest }) => {
                   placeholder='Search a movie title'
                   aria-label='Search'
                   aria-describedby='basic-addon1'
-                  onChange={handleSearchValue}
+                  ref={inputValue}
                 />
 
-                <ButtonSearch onClick={() => onMovieRequest(searchValue)}>Search</ButtonSearch>
+                {/* onClick={() => onMovieRequest(searchValue)}*/}
+                <ButtonSearch type="submit">Search</ButtonSearch>
 
               </div>
             </form>

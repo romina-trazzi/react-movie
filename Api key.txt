@@ -11,3 +11,10 @@ Here is your key: eb1262b
 Please append it to all of your API requests,
 
 OMDb API: http://www.omdbapi.com/?i=tt3896198&apikey=eb1262b
+
+
+
+// Da fare:
+
+- Container per film, migliorare UI
+- Forward ref
