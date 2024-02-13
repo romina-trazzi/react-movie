@@ -1,8 +1,9 @@
 import './MovieFullDetails.css';
+import { FaStar } from "react-icons/fa";
 
 function MovieFullDetail({movieDetails}) {
 
-  const {title, year,runtime, rated, genre, actors, plot, poster } = movieDetails
+  const {title, year, runtime, genre, director, actors, plot, language, country, poster, rated } = movieDetails
 
   return (
     <div>
@@ -21,12 +22,23 @@ function MovieFullDetail({movieDetails}) {
               <div className='d-flex flex-row pt-3 pb-3'>
                 <img src={poster} alt='movie_poster' style={{ width: '250px', height:"300px"}}/>
                 
-                <div className="d-flex flex-column ms-5">
+                <div className="details_container d-flex flex-column justify-content-between ms-5">
+                  <span className="pb-1">Title: {title}</span>
+                  <span className="pb-1">Year: {year}</span>
                   <span className="pb-1">Duration: {runtime}</span>
-                  <span className="pb-1">Rated: {rated}</span>
                   <span className="pb-1">Genre: {genre}</span>
+                  <span className="pb-1">Director: {director}</span>
                   <span className="pb-1">Actors: {actors}</span>
-                  <span className="pb-1">Plot: {plot}</span>
+                  <span className="story_container">
+                    <span className="pb-1 story">Plot: {plot}</span>
+                  </span>  
+                  <span className="pb-1">Language: {language}</span>  
+                  <span className="pb-1">Country: {country}</span>  
+                  <span className="pb-1 d-flex stars"> Rated: {
+                    Array.from({ length: rated }, (_, index) => (
+                    <FaStar key={index} />))
+                    }
+                  </span>
                 </div>
               
               </div>
@@ -37,7 +49,6 @@ function MovieFullDetail({movieDetails}) {
                 
             </div>
 
-           
 
           </div>
         </div>

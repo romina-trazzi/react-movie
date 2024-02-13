@@ -1,3 +1,30 @@
+.details_container {
+
+    & .stars {
+        padding-right: 1rem;
+        
+        & svg {
+            color: gold;
+        }
+    }
+
+    & .stars > svg:nth-child(1) {
+        margin-left: 0.5rem;
+    }
+
+    & .story_container {
+        width: 50%;
+    
+        & .story {
+            display: block;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
+
 @media (max-width: 740px) {
     .movie_detail_container {
         padding-top: 5rem !important;

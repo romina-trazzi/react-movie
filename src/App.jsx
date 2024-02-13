@@ -98,12 +98,15 @@ function App() {
             title: data.Title,
             year: data.Year,
             runtime: data.Runtime,
-            rated: data.Rated,
             genre: data.Genre,
+            director: data.Director,
             actors: data.Actors,
             plot: data.Plot,
+            language: data.Language,
+            country: data.Country,
+            imdbID: data.imdbID,
             poster: data.Poster,
-            imdbID: data.imdbID
+            rated: data.imdbRating
           });
           
           // Then set show movie details to the opposite value
