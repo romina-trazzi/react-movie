@@ -1,0 +1,125 @@
+/* NAVBAR */
+
+.container-fluid {
+    height: inherit
+}
+
+.navbar {
+    font-size: 1.5rem !important;
+    
+    & .my_nav {
+       display: grid;
+       grid-template-columns: 35px auto;
+       grid-template-areas: "nav_icon nav_text";
+    };
+
+    & .nav_text {
+        padding-top: 5px;
+        padding-left:10px;
+        color: white;
+    }
+
+    &  .nav_icon {
+        align-self: center;
+    }
+
+    & .form-control {
+        width: 500px;
+        max-width: 500px;
+        background-color: lightslategrey !important;
+        opacity: 0.9 !important;
+    }
+    
+    & .form-control:focus {
+        border-color: blueviolet !important;
+        box-shadow: 0 0 0 0.25rem rgba(133, 13, 253, 0.25) !important;
+        color: white !important;
+
+    }
+    
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+
+    header {
+        height: 9vh !important;
+    }
+
+    .center-container {
+        justify-content: center !important;
+    }
+
+    .nav_text {
+        font-size: 1.1rem !important;
+        padding-right: 3rem !important;
+        line-height: inherit;
+    } 
+
+    .navbar-collapse {
+        flex-basis: 0;
+        flex-grow: 0;
+    }
+
+    .form-control {
+        width: 75% !important;
+        max-width: 75% !important;
+        flex: 1 0 0 !important;
+    } 
+}
+
+@media (min-width: 740px) and (max-width: 992px) {
+    .nav_text {
+        font-size: 1.1rem !important;
+        padding-right: 3rem !important;
+        line-height: inherit;
+    } 
+
+    /* Navbar width */
+    .form-control {
+        width: 75% !important;
+        max-width: 75% !important;
+        flex: 1 0 0 !important;
+    } 
+}
+
+@media (min-width: 650px) and (max-width: 740px) {
+    .center-container {
+        justify-content: center !important;
+        align-items: center !important;
+        padding-bottom: 2rem;
+    }
+
+    .my_nav span {
+        padding-bottom: 1rem;
+    }
+
+    .movie_list_container p {
+        padding-top: 3rem;
+    }
+}
+
+@media (max-width: 649px) {
+
+    .center-container {
+        justify-content: center !important;
+        align-items: center !important;
+        padding-bottom: 2rem;
+    }
+
+    .my_nav span {
+        padding-bottom: 1rem;
+    }
+
+    /* Navbar width */
+    .form-control {
+        width: 75% !important;
+        max-width: 75% !important;
+        flex: 1 0 0 !important;
+    } 
+
+    .movie_list_container p {
+        padding-top: 3rem;
+    }
+}
+
+

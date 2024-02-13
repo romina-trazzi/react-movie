@@ -1,10 +1,12 @@
+import './MovieFullDetails.css';
+
 function MovieFullDetail({movieDetails}) {
 
   const {title, year,runtime, rated, genre, actors, plot, poster } = movieDetails
 
   return (
     <div>
-      <div className='p-5'>
+      <div className='movie_detail_container pb-5 px-5'>
         <div>
           <h4>Movie Details</h4>
           <div className="row d-flex justify-content-center border border-light-subtle pt-5 pb-5">

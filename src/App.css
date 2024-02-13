@@ -5,7 +5,8 @@
 }
 
 body {
-    height: 100vh;
+    height: 100vh; 
+    background-color: black;
 }
 
 
@@ -13,46 +14,7 @@ body {
 
 header {
     background-color: lightslategrey !important;
-    height: 8vh;
-}
-
-.container-fluid {
-    height: inherit
-}
-
-.navbar {
-    font-size: 1.5rem !important;
-    
-    & .my_nav {
-       display: grid;
-       grid-template-columns: 35px auto;
-       grid-template-areas: "nav_icon nav_text";
-    };
-
-    & .nav_text {
-        padding-top: 5px;
-        padding-left:10px;
-        color: white;
-    }
-
-    &   .nav_icon {
-        align-self: center;
-    }
-
-    & .form-control {
-        width: 500px !important;
-        max-width: 500px !important;
-        background-color: lightslategrey !important;
-        opacity: 0.9 !important;
-    }
-    
-    & .form-control:focus {
-        border-color: blueviolet !important;
-        box-shadow: 0 0 0 0.25rem rgba(133, 13, 253, 0.25) !important;
-        color: white !important;
-
-    }
-    
+    height: 9vh;
 }
 
 /* MAIN */ 
@@ -60,36 +22,9 @@ header {
 main {
     background-color: black;
     color: white;
-    padding-top: 5rem;
-    height: calc(100vh - 8vh - 5rem);
+    padding-top: 3rem;
 }
 
-.movie_list_container {
-    width: 70%;
-    margin: 0 auto;
-}
-
-.image-container {
-    position: relative;
-    transition: transform 0.2s;
-
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-    }
-}
-
-.overlay {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.8);
-    width: 100%;
-    transition: 0.5s ease;
-    opacity: 0;
-    bottom: 0;
-    font-size: 20px;
-    padding: 20px;
-    text-align: center;
-}
 
 
 /* FOOTER */ 

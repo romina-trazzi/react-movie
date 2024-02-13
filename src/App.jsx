@@ -141,7 +141,6 @@ function App() {
       </header>
 
       <main>
-
         {/* If showMovieDetails is true, show MovieFullDetails component */}
         {showMovieDetails ? <MovieFullDetails movieDetails={movieDetails}/> : ""}
         
@@ -151,7 +150,9 @@ function App() {
             <div className='d-flex flex-column justify-content-center align-content-center'>
               
               {/* MovieList + ButtonFavourite */}
-              <MovieList movies={movies} favouriteMovies={favouriteMovies} onFavourite={handleFavourites} setFavouriteMovies={setFavouriteMovies} onMovieDetails={handleSingleMovieDetails}/>
+              <MovieList movies={movies} favouriteMovies={favouriteMovies} onFavourite={handleFavourites} 
+              setFavouriteMovies={setFavouriteMovies} onMovieDetails={handleSingleMovieDetails}/>
+              
               <ButtonFavourite setIsClicked={setIsClicked}>Show\Hide favourites</ButtonFavourite>
 
               <hr/>
@@ -167,7 +168,7 @@ function App() {
         </div>
       </main>
 
-      <footer className='d-flex flex-wrap justify-content-center'>
+      <footer className='d-flex flex-wrap justify-content-center align-items-center'>
         <span> Created by ~ Romina Trazzi 2024 ~ </span>
       </footer>
     </>

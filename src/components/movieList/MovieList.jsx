@@ -1,5 +1,6 @@
 // Icons 
 import { FaHeart } from "react-icons/fa";
+import './MovieList.css'
 
 function MovieList({ movies, favouriteMovies, onFavourite, onMovieDetails}) {
 
@@ -18,11 +19,11 @@ function MovieList({ movies, favouriteMovies, onFavourite, onMovieDetails}) {
                                       </button> 
         
         return (
-          <div key={movie.imdbID} className='d-flex flex-column align-items-center justify-content-around p-5' style={{width: "20%"}}>
+          <div key={movie.imdbID} className='d-flex flex-column align-items-center justify-content-around p-5'>
             <span className='pb-4'>{movie.Title}</span>
 
             <div className="image-container" onClick={()=> onMovieDetails(movie.imdbID)}>
-              <img src={movie.Poster} alt='movie_poster' style={{width: '250px', height:"300px"}}/>
+              <img src={movie.Poster} alt='movie_poster' style={{width: '200px', height:"300px"}}/>
               <div className="d-flex align-items-center overlay"> </div>
             </div>
           
