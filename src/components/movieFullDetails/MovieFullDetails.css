@@ -1,32 +1,94 @@
-.details_container {
+.central_block {
+    
+    & .details_container {
 
-    & .stars {
-        padding-right: 1rem;
+        & .stars {
+            padding-right: 1rem;
         
-        & svg {
-            color: gold;
+            & svg {
+                color: gold;
+            }
+        }
+    
+
+        & .stars > svg:nth-child(1) {
+            margin-left: 0.5rem;
+        }
+
+
+        & .story_container {
+            width: 60%;
+        
+            & .story {
+                display: block;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-style: italic;
+                padding-top: 0.3rem !important;
+                padding-bottom: 0.3rem !important;
+            }
         }
     }
 
-    & .stars > svg:nth-child(1) {
-        margin-left: 0.5rem;
+}
+
+
+
+@media (max-width: 800px) {
+
+    .title_block {
+        width: 100% !important;
     }
 
-    & .story_container {
-        width: 50%;
-    
-        & .story {
-            display: block;
-            width: 100%;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+    .year_block, .year_block > span {
+        display: none; 
+    }
+
+    .central_block {
+        flex-direction: column !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        align-items: center;
+
+        & img {
+            width: 200px !important;
+            height: 250px !important;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+        }
+
+        & .details_container {
+        margin: 0 !important;
+        text-align: center !important;
+
+            & .stars{
+                display: flex;
+                justify-content: center;
+            }
+        } 
+        
+        & .story_container {
+        display: flex;
+        justify-content: center;
+        width: 100% !important;
+        
+            & .story {
+                display: block;
+                width: 60% !important;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-style: italic;
+                padding-top: 0.5rem !important;
+                padding-bottom: 0.5rem !important;
+            }
         }
     }
 }
-
+ 
 @media (max-width: 740px) {
-    .movie_detail_container {
+    .movie_details_container {
         padding-top: 5rem !important;
     }
 }
