@@ -161,7 +161,7 @@ function App() {
               <hr/>
               
               {/* If isClicked is true, show MovieFavourite component */}
-              {isClicked && <MovieFavourite favouriteMovies={favouriteMovies}/>}
+              {isClicked ? <MovieFavourite favouriteMovies={favouriteMovies}/> : ""}
             
             </div>
             
